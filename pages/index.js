@@ -1,22 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Play, 
-  Pause, 
-  Volume2, 
-  VolumeX, 
-  Settings, 
-  Users, 
-  Send, 
-  Video, 
-  Monitor, 
-  Camera,
-  UserCheck,
+import React, { useState, useEffect } from 'react';
+import {
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Settings,
+  Users,
+  Send,
+  Video,
   Shield,
-  Trash2,
   Edit,
   Plus,
   Eye,
-  EyeOff
+  UserCheck
 } from 'lucide-react';
 
 const FinanceLivePlatform = () => {
@@ -88,96 +84,90 @@ const FinanceLivePlatform = () => {
   };
 
   const ViewerInterface = () => (
-    <div className="h-screen bg-gray-50 flex">
+    <div className="live-stream-container">
       {/* 主播放区域 */}
-      <div className="flex-1 flex flex-col">
+      <div className="video-area">
         {/* 视频播放器 */}
-        <div className="flex-1 bg-gray-900 relative">
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-800">
-            <div className="text-center text-white">
-              <Video size={64} className="mx-auto mb-4 opacity-70" />
-              <h3 className="text-xl font-medium mb-2">财经市场分析直播</h3>
-              <p className="text-blue-200">2024年第四季度投资策略解读</p>
-            </div>
+        <div className="video-overlay">
+          <div className="video-info text-center text-white">
+            <Video size={64} className="mx-auto mb-4 opacity-70" />
+            <h3 className="text-xl font-medium mb-2">财经市场分析直播</h3>
+            <p className="text-blue-200">2024年第四季度投资策略解读</p>
           </div>
           
           {/* 播放控制 */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-            <div className="flex items-center justify-between">
-              <button 
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors"
-              >
-                {isPlaying ? <Pause size={20} className="text-white" /> : <Play size={20} className="text-white ml-1" />}
-              </button>
-              
-              <button 
-                onClick={() => setIsMuted(!isMuted)}
-                className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors"
-              >
-                {isMuted ? <VolumeX size={20} className="text-white" /> : <Volume2 size={20} className="text-white" />}
-              </button>
-              
-              <div className="flex items-center bg-white/20 px-3 py-1 rounded-full">
-                <Users size={16} className="text-white mr-1" />
-                <span className="text-white text-sm">{onlineUsers}</span>
-              </div>
-              
-              <button 
-                onClick={() => setCurrentView('admin')}
-                className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors"
-              >
-                <Settings size={20} className="text-white" />
-              </button>
+          <div className="video-controls">
+            <button 
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors"
+            >
+              {isPlaying ? <Pause size={20} className="text-white" /> : <Play size={20} className="text-white ml-1" />}
+            </button>
+            
+            <button 
+              onClick={() => setIsMuted(!isMuted)}
+              className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors"
+            >
+              {isMuted ? <VolumeX size={20} className="text-white" /> : <Volume2 size={20} className="text-white" />}
+            </button>
+            
+            <div className="flex items-center bg-white/20 px-3 py-1 rounded-full">
+              <Users size={16} className="text-white mr-1" />
+              <span className="text-white text-sm">{onlineUsers}</span>
             </div>
+            
+            <button 
+              onClick={() => setCurrentView('admin')}
+              className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors"
+            >
+              <Settings size={20} className="text-white" />
+            </button>
           </div>
         </div>
       </div>
       
       {/* 聊天区域 */}
-      <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
-        <div className="p-3 border-b border-gray-200 flex justify-between items-center">
+      <div className="chat-area">
+        <div className="chat-header">
           <h3 className="font-medium text-gray-800">直播聊天</h3>
           <button 
             onClick={() => setCurrentView('admin')}
-            className="text-blue-600 text-sm hover:underline"
+            className="text-primary-blue text-sm hover:underline"
           >
             管理
           </button>
         </div>
         
-        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+        <div className="chat-messages">
           {chatMessages.map(msg => (
-            <div key={msg.id} className={`flex ${msg.isAdmin ? 'bg-blue-50 p-2 rounded-lg' : ''}`}>
-              <div className="mr-2">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${msg.isAdmin ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}>
-                  <UserCheck size={16} />
-                </div>
+            <div key={msg.id} className="chat-message fade-in">
+              <div className="chat-message-avatar">
+                <UserCheck size={16} />
               </div>
-              <div className="flex-1">
-                <div className="flex justify-between items-start">
-                  <span className={`font-medium text-sm ${msg.isAdmin ? 'text-blue-700' : 'text-gray-700'}`}>{msg.user}</span>
-                  <span className="text-xs text-gray-400">{msg.time}</span>
+              <div className="chat-message-content">
+                <div className="chat-message-header">
+                  <span className={`chat-message-username ${msg.isAdmin ? 'text-primary-blue' : 'text-gray-700'}`}>{msg.user}</span>
+                  <span className="chat-message-time">{msg.time}</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">{msg.message}</p>
+                <p className="chat-message-text">{msg.message}</p>
               </div>
             </div>
           ))}
         </div>
         
-        <div className="p-3 border-t border-gray-200">
-          <div className="flex items-center space-x-2">
+        <div className="chat-input-area">
+          <div className="chat-input">
             <input 
               type="text" 
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
               placeholder="输入消息..."
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="chat-input-field"
             />
             <button 
               onClick={sendMessage}
-              className="bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition-colors"
+              className="chat-input-button"
             >
               <Send size={18} className="text-white" />
             </button>
@@ -188,30 +178,30 @@ const FinanceLivePlatform = () => {
   );
 
   const AdminInterface = () => (
-    <div className="h-screen bg-gray-50 flex">
+    <div className="admin-layout">
       {/* 侧边栏 */}
-      <div className="w-64 bg-white border-r border-gray-200 p-4">
+      <div className="admin-sidebar">
         <h2 className="text-lg font-bold text-gray-800 mb-6">直播管理后台</h2>
         <div className="space-y-1">
           <button 
             onClick={() => setCurrentView('viewer')}
-            className="w-full flex items-center space-x-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+            className="admin-sidebar-item"
           >
-            <Eye size={18} />
-            <span>返回直播间</span>
+            <Eye size={18} className="admin-sidebar-icon" />
+            <span>返回直播</span>
           </button>
           <div className="pt-4 border-t border-gray-200 mt-2">
             <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">设置</p>
-            <button className="w-full flex items-center space-x-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
-              <Shield size={18} />
+            <button className="admin-sidebar-item">
+              <Shield size={18} className="admin-sidebar-icon" />
               <span>管理员账户</span>
             </button>
-            <button className="w-full flex items-center space-x-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
-              <Settings size={18} />
+            <button className="admin-sidebar-item">
+              <Settings size={18} className="admin-sidebar-icon" />
               <span>聊天设置</span>
             </button>
-            <button className="w-full flex items-center space-x-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
-              <Video size={18} />
+            <button className="admin-sidebar-item">
+              <Video size={18} className="admin-sidebar-icon" />
               <span>直播设置</span>
             </button>
           </div>
@@ -219,53 +209,57 @@ const FinanceLivePlatform = () => {
       </div>
       
       {/* 主内容区域 */}
-      <div className="flex-1 p-6 overflow-y-auto">
-        <div className="bg-white rounded-lg shadow border p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-semibold text-gray-800">管理员账户</h3>
-            <button 
-              onClick={addAdminAccount}
-              className="inline-flex items-center space-x-1 px-3 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-            >
-              <Plus size={14} />
-              <span>添加管理员</span>
-            </button>
+      <div className="admin-content">
+        <div className="card m-6">
+          <div className="card-header">
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-semibold text-gray-800">管理员账户</h3>
+              <button 
+                onClick={addAdminAccount}
+                className="btn btn-primary"
+              >
+                <Plus size={14} className="mr-1" />
+                <span>添加管理员</span>
+              </button>
+            </div>
           </div>
           
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead>
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">用户名</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">邮箱</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">角色</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">状态</th>
-                  <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {adminAccounts.map(admin => (
-                  <tr key={admin.id}>
-                    <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{admin.username}</td>
-                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{admin.email}</td>
-                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{admin.role}</td>
-                    <td className="px-4 py-3 whitespace-nowrap">
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${admin.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                        {admin.active ? '活跃' : '禁用'}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
-                      <button 
-                        onClick={() => toggleAdminStatus(admin.id)}
-                        className="text-blue-600 hover:text-blue-800 mr-3"
-                      >
-                        <Edit size={16} />
-                      </button>
-                    </td>
+          <div className="card-body">
+            <div className="overflow-x-auto">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>用户名</th>
+                    <th>邮箱</th>
+                    <th>角色</th>
+                    <th>状态</th>
+                    <th>操作</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {adminAccounts.map(admin => (
+                    <tr key={admin.id}>
+                      <td>{admin.username}</td>
+                      <td>{admin.email}</td>
+                      <td>{admin.role}</td>
+                      <td>
+                        <span className={`badge ${admin.active ? 'badge-success' : 'badge-danger'}`}>
+                          {admin.active ? '活跃' : '禁用'}
+                        </span>
+                      </td>
+                      <td>
+                        <button 
+                          onClick={() => toggleAdminStatus(admin.id)}
+                          className="text-primary-blue hover:text-primary-blue-hover mr-3"
+                        >
+                          <Edit size={16} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

@@ -1,0 +1,370 @@
+/* 财经直播平台专用样式 */
+
+/* 直播相关CSS变量 */
+:root {
+  /* 主题色彩 */
+  --live-primary: #1a73e8;
+  --live-primary-hover: #1557b0;
+  --live-background: #f5f7fa;
+  --live-dark-bg: #111827;
+  --live-text-primary: #333333;
+  --live-text-secondary: #666666;
+  --live-text-light: #ffffff;
+  --live-border: #e0e0e0;
+  --live-success: #34a853;
+  --live-warning: #fbbc04;
+  --live-danger: #ea4335;
+  
+  /* 直播特定样式变量 */
+  --live-badge-bg: rgba(26, 115, 232, 0.1);
+  --live-chat-bg: #ffffff;
+  --live-chat-input-bg: #f8f9fa;
+  --live-chat-divider: #e0e0e0;
+  --live-control-bg: rgba(0, 0, 0, 0.5);
+  --live-control-hover: rgba(255, 255, 255, 0.2);
+}
+
+/* 直播容器样式 */
+.live-container {
+  display: flex;
+  height: 100vh;
+  background-color: var(--live-background);
+}
+
+/* 视频播放区域 */
+.live-player-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--live-dark-bg);
+  position: relative;
+}
+
+/* 视频播放器 */
+.video-player {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-player__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, rgba(26, 115, 232, 0.2), rgba(26, 115, 232, 0.1));
+}
+
+.video-player__placeholder-content {
+  text-align: center;
+  color: var(--live-text-light);
+}
+
+/* 视频控制栏 */
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: var(--live-text-light);
+  transition: opacity 0.3s ease;
+}
+
+.video-player:hover .video-controls {
+  opacity: 1;
+}
+
+.video-controls__progress {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  margin-bottom: 12px;
+  position: relative;
+  cursor: pointer;
+}
+
+.video-controls__progress-filled {
+  height: 100%;
+  background-color: var(--live-primary);
+  border-radius: 2px;
+  width: 45%;
+}
+
+.video-controls__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.video-controls__left, .video-controls__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: var(--live-text-light);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.control-btn:hover {
+  background-color: var(--live-control-hover);
+}
+
+/* 直播信息栏 */
+.live-info {
+  padding: 16px 20px;
+  background-color: var(--live-chat-bg);
+  border-bottom: 1px solid var(--live-chat-divider);
+}
+
+.live-info__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--live-text-primary);
+  margin-bottom: 8px;
+}
+
+.live-info__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--live-text-secondary);
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--live-badge-bg);
+  color: var(--live-primary);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  gap: 4px;
+}
+
+/* 聊天区域 */
+.chat-area {
+  width: 360px;
+  background-color: var(--live-chat-bg);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--live-border);
+}
+
+.chat-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--live-chat-divider);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-header__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--live-text-primary);
+}
+
+.chat-header__users {
+  font-size: 14px;
+  color: var(--live-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 聊天消息列表 */
+.chat-messages {
+  flex: 1;
+  padding: 16px 20px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  margin-bottom: 12px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-message__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.chat-message__username {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--live-text-primary);
+}
+
+.chat-message__username--admin {
+  color: var(--live-primary);
+}
+
+.chat-message__time {
+  font-size: 12px;
+  color: var(--live-text-secondary);
+}
+
+.chat-message__content {
+  font-size: 14px;
+  color: var(--live-text-primary);
+  line-height: 1.4;
+}
+
+/* 聊天输入框 */
+.chat-input {
+  padding: 16px 20px;
+  border-top: 1px solid var(--live-chat-divider);
+}
+
+.chat-input__form {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input__field {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--live-border);
+  border-radius: 20px;
+  font-size: 14px;
+  background-color: var(--live-chat-input-bg);
+}
+
+.chat-input__field:focus {
+  outline: none;
+  border-color: var(--live-primary);
+}
+
+.chat-input__button {
+  background-color: var(--live-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.chat-input__button:hover {
+  background-color: var(--live-primary-hover);
+}
+
+.chat-input__button:disabled {
+  background-color: var(--live-border);
+  cursor: not-allowed;
+}
+
+/* 管理员面板 */
+.admin-panel {
+  padding: 20px;
+  background-color: var(--live-chat-bg);
+}
+
+.admin-panel__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--live-text-primary);
+  margin-bottom: 16px;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .chat-area {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .live-container {
+    flex-direction: column;
+  }
+  
+  .chat-area {
+    width: 100%;
+    height: 40vh;
+    border-left: none;
+    border-top: 1px solid var(--live-border);
+  }
+}
+
+/* 工具类 */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 16px;
+}
+
+.gap-6 {
+  gap: 24px;
+}
+
+.mb-4 {
+  margin-bottom: 16px;
+}
+
+.p-4 {
+  padding: 16px;
+}
+
+.text-center {
+  text-align: center;
+}

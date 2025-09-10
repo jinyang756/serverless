@@ -1,0 +1,489 @@
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 全局样式 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+  background-color: #f5f7fa;
+  line-height: 1.6;
+}
+
+a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+/* 财经直播平台主题色彩 */
+:root {
+  --primary-blue: #1a73e8;
+  --primary-blue-hover: #1557b0;
+  --primary-blue-light: #e8f0fe;
+  --secondary-blue: #4285f4;
+  --accent-blue: #34a853;
+  --accent-red: #ea4335;
+  --accent-yellow: #fbbc04;
+  --dark-gray: #202124;
+  --medium-gray: #5f6368;
+  --light-gray: #dadce0;
+  --lighter-gray: #f8f9fa;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition: all 0.2s ease-in-out;
+}
+
+/* 容器样式 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 按钮样式 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--primary-blue);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-blue-hover);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--primary-blue);
+  border-color: var(--light-gray);
+}
+
+.btn-secondary:hover {
+  background-color: var(--lighter-gray);
+}
+
+.btn-danger {
+  background-color: var(--accent-red);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #d33a2c;
+}
+
+/* 卡片样式 */
+.card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--light-gray);
+  background-color: var(--lighter-gray);
+}
+
+/* 表单样式 */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--dark-gray);
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* 表格样式 */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.table th {
+  background-color: var(--lighter-gray);
+  font-weight: 500;
+  color: var(--medium-gray);
+  font-size: 13px;
+}
+
+.table tbody tr:hover {
+  background-color: var(--lighter-gray);
+}
+
+/* 标签样式 */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.badge-success {
+  background-color: #e6f7e6;
+  color: #2e7d32;
+}
+
+.badge-danger {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.badge-warning {
+  background-color: #fff8e1;
+  color: #f57c00;
+}
+
+.badge-info {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+/* 财经直播平台特定样式 */
+.finance-header {
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  color: white;
+  padding: 16px 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.finance-header h1 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.live-stream-container {
+  display: flex;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+.video-area {
+  flex: 1;
+  background-color: #0d1117;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 20%, transparent 80%, rgba(0,0,0,0.7));
+}
+
+.video-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-area {
+  width: 360px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--light-gray);
+}
+
+.chat-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--light-gray);
+  background-color: var(--lighter-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.chat-message {
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.chat-message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.chat-message-content {
+  flex: 1;
+}
+
+.chat-message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.chat-message-username {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.chat-message-time {
+  font-size: 12px;
+  color: var(--medium-gray);
+}
+
+.chat-message-text {
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.chat-input-area {
+  padding: 16px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.chat-input {
+  display: flex;
+}
+
+.chat-input-field {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid var(--light-gray);
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  transition: var(--transition);
+}
+
+.chat-input-field:focus {
+  border-color: var(--primary-blue);
+}
+
+.chat-input-button {
+  margin-left: 12px;
+  padding: 10px 16px;
+  background-color: var(--primary-blue);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chat-input-button:hover {
+  background-color: var(--primary-blue-hover);
+}
+
+/* 管理后台样式 */
+.admin-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.admin-sidebar {
+  width: 240px;
+  background-color: white;
+  border-right: 1px solid var(--light-gray);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.admin-content {
+  flex: 1;
+  background-color: var(--lighter-gray);
+  overflow-y: auto;
+}
+
+.admin-sidebar-item {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--medium-gray);
+}
+
+.admin-sidebar-item:hover {
+  background-color: var(--lighter-gray);
+  color: var(--primary-blue);
+}
+
+.admin-sidebar-item.active {
+  background-color: var(--primary-blue-light);
+  color: var(--primary-blue);
+}
+
+.admin-sidebar-icon {
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .live-stream-container {
+    flex-direction: column;
+  }
+  
+  .chat-area {
+    width: 100%;
+    height: 40vh;
+  }
+  
+  .admin-sidebar {
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .finance-header h1 {
+    font-size: 18px;
+  }
+  
+  .admin-sidebar {
+    width: 180px;
+  }
+  
+  .chat-area {
+    height: 50vh;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--lighter-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--light-gray);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--medium-gray);
+}
