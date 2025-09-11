@@ -1,200 +1,266 @@
-/* 财经直播平台专用样式 */
+/* 财经直播平台样式 */
 
-/* 直播相关CSS变量 */
-:root {
-  /* 主题色彩 */
-  --live-primary: #1a73e8;
-  --live-primary-hover: #1557b0;
-  --live-background: #f5f7fa;
-  --live-dark-bg: #111827;
-  --live-text-primary: #333333;
-  --live-text-secondary: #666666;
-  --live-text-light: #ffffff;
-  --live-border: #e0e0e0;
-  --live-success: #34a853;
-  --live-warning: #fbbc04;
-  --live-danger: #ea4335;
-  
-  /* 直播特定样式变量 */
-  --live-badge-bg: rgba(26, 115, 232, 0.1);
-  --live-chat-bg: #ffffff;
-  --live-chat-input-bg: #f8f9fa;
-  --live-chat-divider: #e0e0e0;
-  --live-control-bg: rgba(0, 0, 0, 0.5);
-  --live-control-hover: rgba(255, 255, 255, 0.2);
-}
-
-/* 直播容器样式 */
-.live-container {
+/* 用户信息栏 */
+.user-info-bar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 20px;
   display: flex;
-  height: 100vh;
-  background-color: var(--live-background);
+  align-items: center;
+  justify-content: space-between;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 
-/* 视频播放区域 */
-.live-player-area {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--live-dark-bg);
-  position: relative;
-}
-
-/* 视频播放器 */
-.video-player {
-  flex: 1;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.video-player__placeholder {
-  width: 100%;
-  height: 100%;
+/* 认证界面样式 */
+.auth-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to bottom, rgba(26, 115, 232, 0.2), rgba(26, 115, 232, 0.1));
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
 }
 
-.video-player__placeholder-content {
-  text-align: center;
-  color: var(--live-text-light);
-}
-
-/* 视频控制栏 */
-.video-controls {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 16px 20px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  color: var(--live-text-light);
-  transition: opacity 0.3s ease;
-}
-
-.video-player:hover .video-controls {
-  opacity: 1;
-}
-
-.video-controls__progress {
+.auth-form-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 40px;
   width: 100%;
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
-  margin-bottom: 12px;
-  position: relative;
+  max-width: 450px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-header h2 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.auth-header p {
+  margin: 0;
+  color: #666;
+}
+
+.auth-tabs {
+  display: flex;
+  border-bottom: 1px solid #e1e5e9;
+  margin-bottom: 30px;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
   cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
 }
 
-.video-controls__progress-filled {
-  height: 100%;
-  background-color: var(--live-primary);
-  border-radius: 2px;
-  width: 45%;
+.auth-tab:hover {
+  color: #4a6cf7;
 }
 
-.video-controls__buttons {
+.auth-tab.active {
+  color: #4a6cf7;
+  border-bottom: 2px solid #4a6cf7;
+}
+
+.auth-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4a6cf7;
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+}
+
+.send-code-btn {
+  padding: 12px 20px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.send-code-btn:hover:not(.disabled) {
+  background-color: #3a5ae0;
+  transform: translateY(-1px);
+}
+
+.send-code-btn.disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #3a5ae0;
+  transform: translateY(-1px);
+}
+
+/* 直播容器样式 */
+.live-stream-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+}
+
+/* 视频区域样式 */
+.video-area {
+  position: relative;
+  height: 60%;
+  background: #000;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.video-controls__left, .video-controls__right {
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.video-info {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.video-controls {
   display: flex;
   align-items: center;
   gap: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 12px 20px;
+  border-radius: 40px;
 }
 
-.control-btn {
-  background: none;
+.video-controls button {
+  background: rgba(255, 255, 255, 0.2);
   border: none;
-  color: var(--live-text-light);
+  border-radius: 50%;
+  padding: 10px;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
+  transition: background 0.3s ease;
 }
 
-.control-btn:hover {
-  background-color: var(--live-control-hover);
+.video-controls button:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
-/* 直播信息栏 */
-.live-info {
-  padding: 16px 20px;
-  background-color: var(--live-chat-bg);
-  border-bottom: 1px solid var(--live-chat-divider);
-}
-
-.live-info__title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--live-text-primary);
-  margin-bottom: 8px;
-}
-
-.live-info__meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 14px;
-  color: var(--live-text-secondary);
-}
-
-.live-badge {
-  display: inline-flex;
-  align-items: center;
-  background-color: var(--live-badge-bg);
-  color: var(--live-primary);
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
-  gap: 4px;
-}
-
-/* 聊天区域 */
+/* 聊天区域样式 */
 .chat-area {
-  width: 360px;
-  background-color: var(--live-chat-bg);
+  flex: 1;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid var(--live-border);
+  border-top: 1px solid #e1e5e9;
 }
 
 .chat-header {
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--live-chat-divider);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-}
-
-.chat-header__title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--live-text-primary);
-}
-
-.chat-header__users {
-  font-size: 14px;
-  color: var(--live-text-secondary);
-  display: flex;
   align-items: center;
-  gap: 4px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e1e5e9;
+  background: #f8fafc;
 }
 
-/* 聊天消息列表 */
+.chat-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .chat-messages {
   flex: 1;
-  padding: 16px 20px;
+  padding: 20px;
   overflow-y: auto;
+  background: #f8fafc;
 }
 
 .chat-message {
-  margin-bottom: 12px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
   animation: fadeIn 0.3s ease;
 }
 
@@ -209,62 +275,72 @@
   }
 }
 
-.chat-message__header {
+.chat-message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chat-message-content {
+  flex: 1;
+}
+
+.chat-message-header {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 4px;
 }
 
-.chat-message__username {
-  font-size: 13px;
+.chat-message-username {
   font-weight: 600;
-  color: var(--live-text-primary);
-}
-
-.chat-message__username--admin {
-  color: var(--live-primary);
-}
-
-.chat-message__time {
-  font-size: 12px;
-  color: var(--live-text-secondary);
-}
-
-.chat-message__content {
   font-size: 14px;
-  color: var(--live-text-primary);
-  line-height: 1.4;
 }
 
-/* 聊天输入框 */
-.chat-input {
+.chat-message-time {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.chat-message-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.chat-input-area {
   padding: 16px 20px;
-  border-top: 1px solid var(--live-chat-divider);
+  border-top: 1px solid #e1e5e9;
+  background: #fff;
 }
 
-.chat-input__form {
+.chat-input {
   display: flex;
   gap: 8px;
 }
 
-.chat-input__field {
+.chat-input-field {
   flex: 1;
-  padding: 10px 12px;
-  border: 1px solid var(--live-border);
-  border-radius: 20px;
+  padding: 12px 16px;
+  border: 1px solid #e1e5e9;
+  border-radius: 24px;
   font-size: 14px;
-  background-color: var(--live-chat-input-bg);
-}
-
-.chat-input__field:focus {
   outline: none;
-  border-color: var(--live-primary);
+  transition: border-color 0.3s ease;
 }
 
-.chat-input__button {
-  background-color: var(--live-primary);
-  color: white;
+.chat-input-field:focus {
+  border-color: #4a6cf7;
+}
+
+.chat-input-button {
+  background: #4a6cf7;
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -273,98 +349,185 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background 0.3s ease;
 }
 
-.chat-input__button:hover {
-  background-color: var(--live-primary-hover);
+.chat-input-button:hover {
+  background: #3a5ae0;
 }
 
-.chat-input__button:disabled {
-  background-color: var(--live-border);
-  cursor: not-allowed;
+/* 管理员界面样式 */
+.admin-layout {
+  display: flex;
+  height: 100vh;
+  background: #f8fafc;
 }
 
-/* 管理员面板 */
-.admin-panel {
+.admin-sidebar {
+  width: 240px;
+  background: #fff;
+  border-right: 1px solid #e1e5e9;
   padding: 20px;
-  background-color: var(--live-chat-bg);
 }
 
-.admin-panel__title {
+.admin-sidebar h2 {
+  margin: 0 0 24px 0;
   font-size: 18px;
-  font-weight: 600;
-  color: var(--live-text-primary);
-  margin-bottom: 16px;
+  font-weight: 700;
+  color: #1e293b;
 }
 
-.admin-actions {
+.admin-sidebar-item {
   display: flex;
+  align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #64748b;
 }
 
-/* 响应式设计 */
-@media (max-width: 1024px) {
-  .chat-area {
-    width: 300px;
-  }
+.admin-sidebar-item:hover {
+  background: #f1f5f9;
+  color: #1e293b;
 }
 
-@media (max-width: 768px) {
-  .live-container {
-    flex-direction: column;
-  }
-  
-  .chat-area {
-    width: 100%;
-    height: 40vh;
-    border-left: none;
-    border-top: 1px solid var(--live-border);
-  }
+.admin-sidebar-icon {
+  color: #64748b;
 }
 
-/* 工具类 */
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.flex-1 {
+.admin-content {
   flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
 
-.items-center {
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e1e5e9;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.justify-center {
-  justify-content: center;
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
 }
 
-.justify-between {
-  justify-content: space-between;
+.card-body {
+  padding: 24px;
 }
 
-.gap-4 {
-  gap: 16px;
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.gap-6 {
-  gap: 24px;
+.btn-primary {
+  background: #4a6cf7;
+  color: #fff;
 }
 
-.mb-4 {
-  margin-bottom: 16px;
+.btn-primary:hover {
+  background: #3a5ae0;
 }
 
-.p-4 {
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #64748b;
+  font-size: 14px;
+  border-bottom: 1px solid #e1e5e9;
+}
+
+.table td {
   padding: 16px;
+  font-size: 14px;
+  color: #1e293b;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-.text-center {
-  text-align: center;
+.badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* 响应式设计 */
+@media (min-width: 768px) {
+  .live-stream-container {
+    flex-direction: row;
+  }
+  
+  .video-area {
+    width: 70%;
+    height: 100vh;
+  }
+  
+  .chat-area {
+    width: 30%;
+    height: 100vh;
+  }
+}
+
+@media (max-width: 767px) {
+  .auth-form-wrapper {
+    padding: 30px 20px;
+  }
+  
+  .user-info-bar {
+    position: relative;
+    margin: 10px;
+    width: auto;
+  }
+  
+  .video-controls {
+    padding: 10px 16px;
+  }
+  
+  .video-controls button {
+    padding: 8px;
+  }
 }
